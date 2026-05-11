@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pt-faceting"
+version = "0.1.0"
+description = "DFT + MACE workflow for hBN adsorption on vicinal Pt facets"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Pt_faceting contributors"}]
+dependencies = [
+  "ase",
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "pymatgen",
+  "mace-torch",
+]
+
+[project.scripts]
+parse_qe_output = "pt_faceting.cli:parse_qe_output_cmd"
+build_training_set = "pt_faceting.cli:build_training_set_cmd"
+train_mace = "pt_faceting.cli:train_mace_cmd"
+predict_adsorption = "pt_faceting.cli:predict_adsorption_cmd"
+plot_pdos = "pt_faceting.cli:plot_pdos_cmd"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.build/
+dist/
+.env
+.venv/
+.pytest_cache/
+
+# Computational outputs
+*.out
+tmp/
+.save/
+*.wfc
+*.wfc*
+wavefunctions/
