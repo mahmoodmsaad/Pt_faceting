@@ -34,6 +34,14 @@ the Fermi energy is    5.4321 ev
         self.assertEqual(out["energy_ev"], [-1.0, 0.0, 1.0])
         self.assertEqual(out["density"], [0.1, 0.5, 0.2])
 
+    def test_parse_projwfc_empty_file(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "empty.out"
+            path.write_text("")
+            out = parse_projwfc_output(path)
+        self.assertEqual(out["energy_ev"], [])
+        self.assertEqual(out["density"], [])
+
 
 if __name__ == "__main__":
     unittest.main()

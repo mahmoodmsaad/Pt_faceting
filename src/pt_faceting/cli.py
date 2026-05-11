@@ -61,7 +61,10 @@ def predict_adsorption_cmd() -> None:
     if args.model and args.structures and args.output:
         raise SystemExit(predict_mace(args.model, args.structures, args.output))
 
-    raise SystemExit("Provide either energies or model/structures/output.")
+    raise SystemExit(
+        "Provide either (--interface_energy, --slab_energy, --hbn_energy) "
+        "or (--model, --structures, --output)."
+    )
 
 
 def plot_pdos_cmd() -> None:

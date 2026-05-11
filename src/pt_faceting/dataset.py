@@ -13,7 +13,10 @@ def build_training_extxyz(input_json: str | Path, output_extxyz: str | Path) -> 
 
     records = json.loads(Path(input_json).read_text(encoding="utf-8"))
     atoms_list = []
-    for rec in records:
+    for i, rec in enumerate(records):
+        for key in ("symbols", "positions"):
+            if key not in rec:
+                raise ValueError(f"Missing required field '{key}' in record index {i}")
         atoms = Atoms(symbols=rec["symbols"], positions=rec["positions"], cell=rec.get("cell"), pbc=rec.get("pbc", True))
         if "energy" in rec:
             atoms.info["energy"] = rec["energy"]
